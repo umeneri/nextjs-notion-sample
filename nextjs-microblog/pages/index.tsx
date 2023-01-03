@@ -20,7 +20,11 @@ export async function getStaticProps() {
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home({ allPostsData }) {
+type HomeProperty = {
+  allPostsData: any[];
+};
+
+export default function Home({ allPostsData }: HomeProperty) {
   return (
     <Layout home>
       <Head>

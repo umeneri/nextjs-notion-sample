@@ -6,7 +6,7 @@ import html from "remark-html";
 
 const postsDirectory = path.join(process.cwd(), "posts");
 
-export function getPostsData() {
+export function getPostsData(): any[] {
   const fileNames = fs.readdirSync(postsDirectory);
   const allPostsData = fileNames.map((fileName) => {
     const id = fileName.replace(/\.md$/, "");
@@ -34,7 +34,7 @@ export function getAllPostIds() {
   }));
 }
 
-export async function getPostData(id: string) {
+export async function getPostData(id: string): Promise<{[key: string]: any}> {
   const fullPath = path.join(postsDirectory, `${id}.md`);
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const matterResult = matter(fileContents);
@@ -45,7 +45,7 @@ export async function getPostData(id: string) {
 
   return {
     id,
-    blogContentHTML: blogContentHTML.value,
+    blogContentHTML: blogContentHTML.value.toString(),
     ...matterResult.data,
   };
 }

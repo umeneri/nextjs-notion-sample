@@ -6,7 +6,12 @@ import utilStyles from "/styles/utils.module.css";
 const name = "M Code";
 export const siteTitle = "Next.js blog";
 
-function Layout({ children, home }) {
+type LayoutProperty = {
+  children: JSX.Element[];
+  home: boolean;
+};
+
+function Layout({ children, home }: LayoutProperty) {
   return (
     <div className={styles.container}>
       <Head>
